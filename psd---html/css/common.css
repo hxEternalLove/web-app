@@ -1,0 +1,58 @@
+.public-header {
+    height: 110px;
+    background: #006dcc;
+}
+.public-container {
+    position: relative;
+    margin: 0 auto;
+    /* background: #006dcc; */
+    width: 1100px;
+}
+.public-header .header-logo {
+    float: left;
+    margin-top: 44px;
+    width: 182px;
+    height: 54px;
+    background: url('../images/index-header-logo.png');
+}
+.public-header .header-logo a {
+    height: 54px;
+}
+.public-header .header-nav {
+    float: right;
+    font-size: 14px;
+}
+.public-header .header-nav a{
+    color: #3b3b3b;
+}
+.public-footer .header-nav a:hover {
+    text-decoration: underline;
+}
+.public-header .header-nav .item{
+    float: left;
+    margin-left: 50px;
+    margin-top: 40px;
+    color: #3b3b3b;
+}
+.public-footer {
+    height: 218px;
+    padding-top: 100px;
+    background: #3b3b3b;
+}
+.public-footer .footer-col {
+    width: 230px;
+    float: left;
+    margin-right: 60px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 60px;
+}
+.public-footer .footer-col:last-child, .public-footer .footer-col-no{/*last-child  IE7没有可以用一个新类替代*/
+    margin-right: 0;
+}
+.public-footer .footer-logo {
+    width: 182px;
+    height: 55px;
+    margin-top: -10px;
+    background: url('../images/index-header-logo.png') no-repeat;
+}

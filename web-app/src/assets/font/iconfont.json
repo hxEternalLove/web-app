@@ -1,0 +1,72 @@
+{
+  "id": "2228747",
+  "name": "web-erp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3945636",
+      "name": "会员",
+      "font_class": "huiyuan",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "4050389",
+      "name": "数据",
+      "font_class": "shuju",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "4697070",
+      "name": "企业",
+      "font_class": "qiye",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "5335119",
+      "name": "产品",
+      "font_class": "chanpin",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "5348500",
+      "name": "首页",
+      "font_class": "shouye1",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9352065",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e78b",
+      "unicode_decimal": 59275
+    },
+    {
+      "icon_id": "11609868",
+      "name": "财务",
+      "font_class": "caiwu",
+      "unicode": "e711",
+      "unicode_decimal": 59153
+    },
+    {
+      "icon_id": "12451794",
+      "name": "产品",
+      "font_class": "chanpin1",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "12680843",
+      "name": "订单",
+      "font_class": "order-copy",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    }
+  ]
+}
