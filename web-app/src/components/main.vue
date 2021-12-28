@@ -23,18 +23,12 @@ export default {
             n:1,
             obj:[
                 {title:'首页',url:'/home',icon:"iconshouye1"},
-                {title:'企业管理',url:'/qiye',icon:"iconqiye"},
-                {title:'财务管理',url:'/caiwu',icon:"iconcaiwu"},
+                {title:'企业小镇App',url:'/qiye',icon:"iconqiye"},
+                {title:'QQ空间时光轴',url:'/caiwu',icon:"iconcaiwu"},
                 {title:'产品管理',url:'/canpin',icon:"iconchanpin"},
-                {title:'订单管理',url:'/dingdan',icon:"iconorder-copy"},
+                {title:'订单管理',url:'/dingdanguanli',icon:"iconorder-copy"},
                 {title:'管理会员',url:'/huiyuan',icon:"iconhuiyuan"},
                 {title:'数据概括',url:'/shuju',icon:"iconshuju"},
-
-
-                {title:'金渡小镇',url:'/xiaozhen',icon:"iconhuaban"},
-                {title:'金渡生活',url:'/shenghuo',icon:"iconhi"},
-                {title:'订单',url:'/dingdan',icon:"iconicon-"},
-                {title:'我的',url:'/my',icon:"icongeren"}
             ],
         }
     },
@@ -55,12 +49,15 @@ export default {
 }
 .sidebar {
     width: 200px;
-    height: 100%;
+    min-height: 100%;
     background-color: #7f8fe8;
     color: #fff;
     font-size: 16px;
-    float: left;
+    /* float: left; */
     text-align: left;
+    position: fixed;
+    left: 0;top: 0;
+
 }
 .title {
     padding: 15px;
@@ -86,6 +83,5 @@ export default {
 /* sidebar-content开始 */
 .sidebar-content {
     height: 100%;
-    background-color:  yellow;
 }
 </style>
