@@ -1,5 +1,6 @@
 <template>
     <div class="index-content">
+        <!-- 路由出口 -->
         <router-view></router-view>
         <div class="footer">
             <ul>

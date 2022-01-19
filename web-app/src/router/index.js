@@ -50,6 +50,11 @@ const routes = [
     path: '/caiwu',
     name: 'Caiwu',
     component: () => import('../components/Caiwu.vue')
+  },
+  {
+    path: '/canpin',
+    name: 'Canpin',
+    component: () => import('../components/Canpin.vue')
   }
 ]
 
