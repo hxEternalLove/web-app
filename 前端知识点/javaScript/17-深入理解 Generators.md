@@ -59,40 +59,30 @@ yield return  3;
 使用迭代器来创建可枚举类型的类
 ```
 class  YieldClass
-
 {
+    public  IEnumerable<int>  Example()//迭代器
+    {
+        yield return  1;
 
-    public  IEnumerable<int>  Example()//迭代器
+        yield return  2;
 
-    {
-
-yield return  1;
-
-yield return  2;
-
-yield return  3;
-
-    }
-
+        yield return  3;
+    }
 }
 
 class  Program
-
 {
+    static  void  Main()
 
-    static  void  Main()
+    {
+        YieldClass yc=new  YieldClass  ();
 
-    {
+        foreach(var  a  in  yc.Example())
 
-YieldClass yc=new  YieldClass  ();
-
-foreach(var  a  in  yc.Example())
-
-Console.WriteLine(a);
-
-    }
-
+        Console.WriteLine(a);  
+    }
 }
+
 ```
 上述代码会产生如下输入
 ```
@@ -115,47 +105,47 @@ private  sealed class YieldEnumerator :
 
 {
 
-    // Fields字段
+    // Fields字段
 
-    private  int  state;
+    private  int  state;
 
-    private  int  current;
+    private  int  current;
 
-    public  YieldClass owner;
+    public  YieldClass owner;
 
-    private  int  initialThreadId;
+    private  int  initialThreadId;
 
-    // Methods方法
+    // Methods方法
 
-    [DebuggerHidden]
+    [DebuggerHidden]
 
-    public  YieldEnumerator(int  state);
+    public  YieldEnumerator(int  state);
 
-    private  bool  MoveNext();
+    private  bool  MoveNext();
 
-    [DebuggerHidden]
+    [DebuggerHidden]
 
-    IEnumerator<int>  IEnumerable<int>.GetEnumerator();
+    IEnumerator<int>  IEnumerable<int>.GetEnumerator();
 
-    [DebuggerHidden]
+    [DebuggerHidden]
 
-    IEnumerator IEnumerable.GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator();
 
-    [DebuggerHidden]
+    [DebuggerHidden]
 
-    void  IEnumerator.Reset();
+    void  IEnumerator.Reset();
 
-    void  IDisposable.Dispose();
+    void  IDisposable.Dispose();
 
-    // Properties属性
+    // Properties属性
 
-    object  IEnumerator<object>.Current
+    object  IEnumerator<object>.Current
 
-    {  [DebuggerHidden]  get;  }
+    {  [DebuggerHidden]  get;  }
 
-    object  IEnumerator.Current
+    object  IEnumerator.Current
 
-    {  [DebuggerHidden]  get;  }
+    {  [DebuggerHidden]  get;  }
 
 }
 ```
@@ -174,49 +164,49 @@ bool  MoveNext()
 
 {
 
-    switch  (state)
+    switch  (state)
 
-    {
+    {
 
-        case  0:
+        case  0:
 
-            state  =  -1;
+            state  =  -1;
 
-            current  =  1;
+            current  =  1;
 
-            state  =  1;
+            state  =  1;
 
-            return  true;
+            return  true;
 
-        case  1:
+        case  1:
 
-            state  =  -1;
+            state  =  -1;
 
-            current  =  2;
+            current  =  2;
 
-            state  =  2;
+            state  =  2;
 
-            return  true;
+            return  true;
 
-        case  2:
+        case  2:
 
-            state  =  -1;
+            state  =  -1;
 
-            current  =  3;
+            current  =  3;
 
-            state  =  3;
+            state  =  3;
 
-            return  true;
+            return  true;
 
-        case  3:
+        case  3:
 
-            state  =  -1;
+            state  =  -1;
 
-            break;
+            break;
 
-    }
+    }
 
-    return  false;
+    return  false;
 
 }
 ```
@@ -272,33 +262,33 @@ function  example()  {
 
   return  regeneratorRuntime.wrap(function  example$(context$1$0)  {
 
-    while  (1)  switch  (context$1$0.prev  =  context$1$0.next)  {
+    while  (1)  switch  (context$1$0.prev  =  context$1$0.next)  {
 
-      case  0:
+      case  0:
 
-        context$1$0.next  =  2;
+        context$1$0.next  =  2;
 
-        return  1;
+        return  1;
 
-      case  2:
+      case  2:
 
-        context$1$0.next  =  4;
+        context$1$0.next  =  4;
 
-        return  2;
+        return  2;
 
-      case  4:
+      case  4:
 
-        context$1$0.next  =  6;
+        context$1$0.next  =  6;
 
-        return  3;
+        return  3;
 
-      case  6:
+      case  6:
 
-      case  "end":
+      case  "end":
 
-        return  context$1$0.stop();
+        return  context$1$0.stop();
 
-    }
+    }
 
   },  marked0$0[0],  this);
 
@@ -316,11 +306,11 @@ runtime.mark  =  function(genFun)  {
 
   if  (Object.setPrototypeOf)  {
 
-    Object.setPrototypeOf(genFun,  GeneratorFunctionPrototype);
+    Object.setPrototypeOf(genFun,  GeneratorFunctionPrototype);
 
   }  else  {
 
-    genFun.__proto__  =  GeneratorFunctionPrototype;
+    genFun.__proto__  =  GeneratorFunctionPrototype;
 
   }
 
@@ -368,11 +358,11 @@ function  defineIteratorMethods(prototype)  {
 
   ["next",  "throw",  "return"].forEach(function(method)  {
 
-    prototype[method]  =  function(arg)  {
+    prototype[method]  =  function(arg)  {
 
-      return  this._invoke(method,  arg);
+      return  this._invoke(method,  arg);
 
-    };
+    };
 
   });
 
@@ -397,11 +387,11 @@ function  tryCatch(fn,  obj,  arg)  {
 
   try  {
 
-    return  {  type:  "normal",  arg:  fn.call(obj,  arg)  };
+    return  {  type:  "normal",  arg:  fn.call(obj,  arg)  };
 
   }  catch  (err)  {
 
-    return  {  type:  "throw",  arg:  err  };
+    return  {  type:  "throw",  arg:  err  };
 
   }
 
@@ -411,25 +401,25 @@ tryCatch 方法会实际调用 example$方法，进入转换后的 switch case, 
 ```
 var  record  =  tryCatch(innerFn,  self,  context);
 
-        if  (record.type  ===  "normal")  {
+        if  (record.type  ===  "normal")  {
 
-          // If an exception is thrown from innerFn, we leave state ===
+          // If an exception is thrown from innerFn, we leave state ===
 
-          // GenStateExecuting and loop back for another invocation.
+          // GenStateExecuting and loop back for another invocation.
 
-          state  =  context.done
+          state  =  context.done
 
-            ?  GenStateCompleted
+            ?  GenStateCompleted
 
-            :  GenStateSuspendedYield;
+            :  GenStateSuspendedYield;
 
-          var  info  =  {
+          var  info  =  {
 
-            value:  record.arg,
+            value:  record.arg,
 
-            done:  context.done
+            done:  context.done
 
-          };
+          };
 ```
 **4\. 总结**
 

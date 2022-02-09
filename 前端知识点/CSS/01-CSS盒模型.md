@@ -23,18 +23,18 @@
 #### 二、标准模型和IE模型的区别
 
 IE模型和标准模型唯一的区别是内容计算方式的不同，如下图所示：
+
+**IE模型元素宽度width=content+padding+border**，高度计算相同
 ![image.png](https://upload-images.jianshu.io/upload_images/2323089-311a6d054309f170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-
-**IE模型元素宽度width=content+padding**，高度计算相同
-![image.png](https://upload-images.jianshu.io/upload_images/2323089-74276bc0bb756135.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
 **标准模型元素宽度width=content**，高度计算相同
+![image.png](https://upload-images.jianshu.io/upload_images/2323089-74276bc0bb756135.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### 三、css如何设置获取这两种模型的宽和高
 
 通过css3新增的属性 `box-sizing: content-box | border-box`分别设置盒模型为标准模型（`content-box`）和IE模型（`border-box`）。
+
+`.content-box`设置为标准模型，它的元素宽度width=100px。
 ```
 .content-box {
   box-sizing:content-box;
@@ -48,8 +48,8 @@ IE模型和标准模型唯一的区别是内容计算方式的不同，如下图
 ![image.png](https://upload-images.jianshu.io/upload_images/2323089-9d0b50be7d940e1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-`.content-box`设置为标准模型，它的元素宽度width=100px。
 
+`.border-box`设置为IE模型，它的元素宽度width=content + 2 *padding + 2 *border = 70px + 2 *10px + 2 *5px = 100px。
 ```
 .border-box {
   box-sizing: border-box;
@@ -62,8 +62,6 @@ IE模型和标准模型唯一的区别是内容计算方式的不同，如下图
 ```
 ![image.png](https://upload-images.jianshu.io/upload_images/2323089-eee8332a4ed1796b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-
-`.border-box`设置为IE模型，它的元素宽度width=content + 2 *padding + 2 *border = 70px + 2 *10px + 2 *5px = 100px。
 
 #### 四、javascript如何设置获取盒模型对应的宽和高
 

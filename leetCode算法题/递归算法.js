@@ -144,7 +144,36 @@ let arr = [
 function toLineArr(list) {
     return list.reduce((arr,item)=>Array.isArray(item)?[...arr,...toLineArr(item)]:[...arr,item], [])
 }
+// ## 5.实现阶乘
+function getJieChen(num) {
+    let res = num;// 定义结果
+    while (--num) {// while循环，不满足条件时终止循环
+        res = res*num;
+    }
+    
+    // 使用递归实现
+    let resByrec = function (n,star) {
+        if(n===1) return 1;
+        let nStar = n*star;
+        let nN = n-1;
+        if (nN>1) return resByrec(nN,nStar);
+        return nStar
+    }
+    res = resByrec(num,1)
 
+    // 使用arguments.callee递归->arguments.callee代表函数名，多用于递归调用,对于没有函数名的匿名函数也非常起作用。
+    let jiechen = function (n) {
+        return (function (n) {
+            if (n>1) {
+                return n * arguments.callee(n-1);
+            }
+            return n
+        })(n)
+    }
+    res = jiechen(num);// 120
+    return res;
+}
+getJieChen(5)// 120
 
 function totree(list) {
     // **递归方法**
