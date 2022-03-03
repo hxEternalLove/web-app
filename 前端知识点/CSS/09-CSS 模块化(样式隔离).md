@@ -109,7 +109,6 @@ BEM 的命名规范如下：
 /* 修饰符用来定义块或元素的外观和行为。同样的块在应用不同的修饰符之后，会有不同的外观 */
 .block--modifier {
 }
-复制代码
 ```
 
 通过 bem 的命名方式，可以让我们的 css 代码层次结构清晰，通过严格的命名也可以解决命名冲突的问题，但也不能完全避免，毕竟只是一个命名约束，不按规范写照样能运行。
@@ -142,7 +141,6 @@ CSS Modules 指的是我们像 import js 一样去引入我们的 css 代码，�
 .otherClassName {
   composes: className from "./style.css";
 }
-复制代码
 ```
 
 2、在 js 模块中导入 css 文件。
@@ -151,7 +149,6 @@ CSS Modules 指的是我们像 import js 一样去引入我们的 css 代码，�
 import styles from "./style.css";
 
 element.innerHTML = '<div class="' + styles.className + '">';
-复制代码
 ```
 
 3、配置 css-loader 打包。
@@ -178,7 +175,6 @@ module.exports = {
   }
 };
 
-复制代码
 ```
 
 4、最终打包出来的 css 类名就是由一长串 hash 值生成。
@@ -191,7 +187,6 @@ module.exports = {
 ._10B-buq6_BEOTOl9urIjf8 {
   background-color: blue;
 }
-复制代码
 ```
 
 ### CSS In JS
@@ -241,7 +236,6 @@ const TomatoButton = styled(Button)`
   <Title>Hello World, this is my first styled component!</Title>
   <Button primary>Primary</Button>
 </Wrapper>;
-复制代码
 ```
 
 可以看到，我们直接在 js 中编写 css，案例中在定义源生 html 时就创建好了样式，在使用的时候就可以渲染出带样式的组件了。
