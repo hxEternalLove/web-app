@@ -38,6 +38,52 @@ app.post("/data/login", function(req, res){
 	  }
 })
 
+app.post("/data/students", function(req, res){
+	console.log(req.body, req.query, req.params);
+	var data = {
+		"code": "200",
+		"msg": "success",
+		"result":[
+			{name:'张1', score:99, time:'2021-12-22'},
+			{name:'张2', score:92, time:'2021-12-23'},
+			{name:'张3', score:89, time:'2021-12-22'},
+			{name:'张4', score:96, time:'2021-11-22'},
+			{name:'张5', score:93, time:'2021-12-22'},
+			{name:'张6', score:60, time:'2021-11-22'},
+			{name:'张7', score:98, time:'2021-12-27'},
+			{name:'张8', score:99, time:'2021-12-26'},
+			{name:'张9', score:91, time:'2021-12-25'},
+			{name:'张10', score:97, time:'2021-12-23'},
+		]
+	}
+	res.send(JSON.stringify(data));
+})
+
+app.get("/data/students", function(req, res){
+	var data = {
+		"code": "200",
+		"msg": "success",
+		"result":[
+			{name:'张1', score:99, time:'2021-12-22'},
+			{name:'张2', score:92, time:'2021-12-23'},
+			{name:'张3', score:89, time:'2021-12-22'},
+			{name:'张4', score:96, time:'2021-11-22'},
+			{name:'张5', score:93, time:'2021-12-22'},
+			{name:'张6', score:60, time:'2021-11-22'},
+			{name:'张7', score:98, time:'2021-12-27'},
+			{name:'张8', score:99, time:'2021-12-26'},
+			{name:'张9', score:91, time:'2021-12-25'},
+			{name:'张10', score:97, time:'2021-12-23'},
+		]
+	}
+	res.end(JSON.stringify(data));
+})
+
+app.get("/data/students1", function(req, res){
+	res.setStatus('500');
+	res.end(JSON.stringify(data));
+})
+
 app.get('/get_message', function(req, res, next) {
 	var o = {};
 	for (let [k,v] of map){

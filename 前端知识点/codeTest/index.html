@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    // 给定数组，实现id为数字，并按照id排序，输出对应的name
+    // 2 题开始
+    const source = [
+        {id: 1,name: 'test1'},
+        {id: {},name: 'test{}'},
+        {id: 2,name: 'test2'},
+        {id: 6,name: 'test6'},
+        {id: 5,name: 'test5'},
+        {id: ()=>{},name: 'test1()=>{}'},
+        {id: 3,name: 'test3'},
+        {id: 4,name: 'test4'},
+        {name: 'test1'},
+        {},
+    ]
+    function filterSort(data){
+        return  data.filter((item)=>item.id&&(typeof(item.id)==='number'))
+                    .sort((a,b)=>{
+                        return a.id-b.id;
+                    })
+                    .map((item)=>item.name)
+    }
+    filterSort(source);
+    // 2 题结束
+
+
+    // 3 题开始
+    // let url = 'https://xxx.com/students';
+    /** 模拟数据结构
+     "result": [
+        { name: '张1', score: 99, time: '2021-12-22' },
+        { name: '张2', score: 92, time: '2021-12-23' },
+        { name: '张3', score: 89, time: '2021-12-22' },
+        { name: '张4', score: 96, time: '2021-11-22' },
+        { name: '张5', score: 93, time: '2021-12-22' },
+        { name: '张6', score: 60, time: '2021-11-22' },
+        { name: '张7', score: 98, time: '2021-12-27' },
+        { name: '张8', score: 99, time: '2021-12-26' },
+        { name: '张9', score: 91, time: '2021-12-25' },
+        { name: '张10', score: 97, time: '2021-12-23' },
+      ]
+    */  
+    let needCount = 10,// 假如数据都有效，则至少需要10次请求。
+      maxCount = 6,// 最大并发次数。
+      curCount = 0,// 当前并发次数。
+      sumCount = 0,// 总共发送的请求次数
+      studentList = [],// 学生数据列表
+      isAlert=false;// 弹框标记
+    function btnClick(num, method) {
+      let url = 'http://127.0.0.1:3000/data/students'
+      if (num == 500) url = 'http://127.0.0.1:3000/data/students1'
+      if (num == 404) url = 'http://127.0.0.1:3000/data/students404'
+      if (!num) url = 'http://127.0.0.1:3000/data/students'// 正常数据请求
+      
+      /** 点击按钮初始化数据 */
+      needCount = 10,// 假如数据都有效，则至少需要10次请求。
+      maxCount = 6,// 最大并发次数。
+      curCount = 0,// 当前并发次数。
+      sumCount = 0,// 总共发送的请求次数
+      studentList = []
+      isAlert=false;
+
+      // 获取学生列表
+      fetchStudentList(url, {}, (stulist) => {// 成功回调
+        studentList = stulist;
+        console.log(studentList)// 符合条件的学生列表
+        console.log(sumCount)// 总共发送的请求次数
+      }, (fail, nextFetch) => {// 失败回调
+        if (isAlert) return
+        isAlert = true;
+        if (fail.status == '500') {
+          alert('500')
+          // handle
+        } else if (fail.status == 'err') {
+          alert('err ' + JSON.stringify(fail.msg))
+          // nextFetch();// 继续请求
+        } else {
+          // handle
+          alert(JSON.stringify(fail.status))
+        }
+      },method);
+    }
+
+    // 请求学生列表数据
+    function fetchStudentList(url, params, callBack, failBack,method) {
+      for (var i = 0; i < maxCount; i++) {
+        sumCount++;
+        curCount++;// 当前线程数
+        needCount--;// 还需线程数
+        // 一次请求
+        fetchOnce(url, params, callBack, failBack, method)
+      }
+      if (curCount == 6 || curCount <= 0) {// 不做请求。
+        return
+      }
+
+      if (stopFetch(url, params, callBack, failBack, method)) return;
+    }
+
+    // 发送一次请求
+    function fetchOnce(url, params, callBack, failBack, method) {
+      let fetchOptions = { method: 'GET'}
+      if (method == 'POST') {
+        fetchOptions = {
+          method: 'POST',
+          credential: 'include',
+          header: { 'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(params)
+        }
+      }
+      fetch(url, fetchOptions)
+        .then((res) => {
+          if (res.status == '200') {
+            return res.json();
+          } else {
+            return Promise.reject(res)
+          }
+        })
+        .then((res) => {
+          curCount--;// 完成一次线程，当前线程减一
+          let studentArr = res.result.filter(item => item.score > 90 && (new Date('2021-12-03') < new Date(item.time)))// 过滤
+          studentList = studentList.concat(studentArr);
+          // 数据够了直接停止后续去处理
+          if (stopFetch(url, params, callBack, failBack, method)) return;
+        })
+        .catch((err) => {
+          let nextFetch = function () {
+            curCount--;// 完成一次线程，当前线程减一
+            if (stopFetch(url, params, callBack, failBack, method)) return;
+          }
+          failBack({ 'status': err.status, msg: err }, nextFetch)
+        })
+      return
+    }
+
+    // 排序并截取100条数据
+    function sortAndSlice(arr, func, count) {
+      arr.sort(func).splice(count);// 排序并删除，修改原数组
+      return arr;
+    }
+    // 停止下一次请求
+    function stopFetch(url, params, callBack, failBack, method) {
+      if (studentList.length >= 100) {
+        studentList = sortAndSlice(studentList, (a, b) => b.score - a.score, 100)// 排序和截取数据
+        callBack(studentList);
+        return true;
+      } else {
+        let validCount = parseInt(studentList.length / 10);// 10条为一组计算有效次数。
+        needCount = 10 - validCount - curCount;// 是还需要发送的请求次数 
+        maxCount = 6 - curCount;// 可添加线程数
+
+        if (needCount <= 0) return; // 无需多余请求
+
+        if (needCount < maxCount) maxCount = needCount;
+
+        fetchStudentList(url, params, callBack, failBack, method)// 数据不够继续请求
+      }
+      return false;
+    }
+    // 3 题结束
+</script>
+<body>
+    <style>
+        /* 1 题开始 */
+        .client-a {
+            background-color: aqua;
+            /* box-sizing: border-box; */
+            min-width: 1000px;
+            padding: 32px 24px;
+            overflow: hidden;
+        }
+        .client-b {
+            float: left;
+            background-color:blueviolet;
+            width: calc((100% - 60px) / 3.0);
+            height: 300px;
+            margin: 8px;
+            border: 1px solid #999;
+        }
+    </style>
+    <div class="client-a">
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+        <div class="client-b"></div>
+    </div>
+    <!-- 1 题结束 -->
+
+    <!-- 3 题按钮 -->
+    <button onclick="btnClick('','GET');">按钮GET</button>
+    <button onclick="btnClick('','POST');">按钮POST</button>
+    <button onclick="btnClick('500');">按钮500</button>
+    <button onclick="btnClick('404');">按钮404</button>
+</body>
+</html>

@@ -712,7 +712,7 @@ box-sizing:content-box的时候，边框和padding不包含在元素的宽高之
 ```
 ##### 2. position （元素已知宽度）
 父元素设置为：position: relative;
-子元素设置为：position: absolute; left:50%; right50%;
+子元素设置为：position: absolute; left:50%; top:50%;
 然后margin 上、左减去元素自身宽度的一半距离就可以实现
 ```
 .box{                      
@@ -1051,5 +1051,3 @@ Less 中的作用域与 CSS 中的作用域非常类似。首先在本地查找�
   @var: white;
 }
 ```
-
-#### Canvas画图
