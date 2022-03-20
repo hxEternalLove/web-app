@@ -1,4 +1,62 @@
 
+- [一、Vue 基础](#一vue-基础)
+  - [1\. Vue的基本原理](#1-vue的基本原理)
+  - [2\. 双向数据绑定的原理](#2-双向数据绑定的原理)
+  - [3\. 使用 Object.defineProperty() 来进行数据劫持有什么缺点？](#3-使用-objectdefineproperty-来进行数据劫持有什么缺点)
+  - [4\. MVVM、MVC、MVP的区别](#4-mvvmmvcmvp的区别)
+  - [5\. Computed 和 Watch 的区别](#5-computed-和-watch-的区别)
+  - [6\. Computed 和 Methods 的区别](#6-computed-和-methods-的区别)
+  - [7\. slot是什么？有什么作用？原理是什么？](#7-slot是什么有什么作用原理是什么)
+  - [8\. 过滤器的作用，如何实现一个过滤器](#8-过滤器的作用如何实现一个过滤器)
+  - [9\. 如何保存页面的当前的状态](#9-如何保存页面的当前的状态)
+  - [10\. 常见的事件修饰符及其作用](#10-常见的事件修饰符及其作用)
+  - [11\. v-if、v-show、v-html 的原理](#11-v-ifv-showv-html-的原理)
+  - [13\. v-if和v-show的区别](#13-v-if和v-show的区别)
+  - [14\. v-model 是如何实现的，语法糖实际是什么？](#14-v-model-是如何实现的语法糖实际是什么)
+  - [15\. v-model 可以被用在自定义组件上吗？如果可以，如何使用？](#15-v-model-可以被用在自定义组件上吗如果可以如何使用)
+  - [16\. data为什么是一个函数而不是对象](#16-data为什么是一个函数而不是对象)
+  - [17\. 对keep-alive的理解，它是如何实现的，具体缓存的是什么？](#17-对keep-alive的理解它是如何实现的具体缓存的是什么)
+  - [18\. $nextTick 原理及作用](#18-nexttick-原理及作用)
+  - [19\. Vue 中给 data 中的对象属性添加一个新的属性时会发生什么？如何解决？](#19-vue-中给-data-中的对象属性添加一个新的属性时会发生什么如何解决)
+  - [20\. Vue中封装的数组方法有哪些，其如何实现页面更新](#20-vue中封装的数组方法有哪些其如何实现页面更新)
+  - [21\. Vue 单页应用与多页应用的区别](#21-vue-单页应用与多页应用的区别)
+  - [22\. Vue template 到 render 的过程](#22-vue-template-到-render-的过程)
+  - [23\. Vue data 中某一个属性的值发生改变后，视图会立即同步执行重新渲染吗？](#23-vue-data-中某一个属性的值发生改变后视图会立即同步执行重新渲染吗)
+  - [24\. 简述 mixin、extends 的覆盖逻辑](#24-简述-mixinextends-的覆盖逻辑)
+  - [25\. 描述下Vue自定义指令](#25-描述下vue自定义指令)
+  - [26\. 子组件可以直接改变父组件的数据吗？](#26-子组件可以直接改变父组件的数据吗)
+  - [27\. Vue是如何收集依赖的？](#27-vue是如何收集依赖的)
+  - [28\. 对 React 和 Vue 的理解，它们的异同](#28-对-react-和-vue-的理解它们的异同)
+  - [29\. Vue的优点](#29-vue的优点)
+  - [30\. assets和static的区别](#30-assets和static的区别)
+  - [31\. delete和Vue.delete删除数组的区别](#31-delete和vuedelete删除数组的区别)
+  - [32\. vue如何监听对象或者数组某个属性的变化](#32-vue如何监听对象或者数组某个属性的变化)
+  - [33\. 什么是 mixin ？](#33-什么是-mixin-)
+  - [34\. Vue模版编译原理](#34-vue模版编译原理)
+  - [35\. 对SSR的理解](#35-对ssr的理解)
+  - [36\. Vue的性能优化有哪些](#36-vue的性能优化有哪些)
+  - [37\. 对 SPA 单页面的理解，它的优缺点分别是什么？](#37-对-spa-单页面的理解它的优缺点分别是什么)
+  - [38\. template和jsx的有什么分别？](#38-template和jsx的有什么分别)
+  - [39\. vue初始化页面闪动问题](#39-vue初始化页面闪动问题)
+  - [40\. extend 有什么作用](#40-extend-有什么作用)
+  - [41\. mixin 和 mixins 区别](#41-mixin-和-mixins-区别)
+  - [42\. **MVVM**的优缺点?](#42-mvvm的优缺点)
+- [二、生命周期](#二生命周期)
+  - [1\. 说一下Vue的生命周期](#1-说一下vue的生命周期)
+  - [2\. Vue 子组件和父组件执行顺序](#2-vue-子组件和父组件执行顺序)
+  - [3\. created和mounted的区别](#3-created和mounted的区别)
+  - [4\. 一般在哪个生命周期请求异步数据](#4-一般在哪个生命周期请求异步数据)
+  - [5\. keep-alive 中的生命周期哪些](#5-keep-alive-中的生命周期哪些)
+- [三、组件通信](#三组件通信)
+  - [（1） props  /   $emit](#1-props---emit)
+      - [1\. 父组件向子组件传值](#1-父组件向子组件传值)
+      - [2\. 子组件向父组件传值](#2-子组件向父组件传值)
+  - [（2）eventBus事件总线（`$emit / $on`）](#2eventbus事件总线emit--on)
+  - [（3）依赖注入（provide / inject）](#3依赖注入provide--inject)
+  - [（3）ref / $refs](#3ref--refs)
+  - [（4）`$parent / $children`](#4parent--children)
+  - [（5）`$attrs / $listeners`](#5attrs--listeners)
+  - [（6）总结](#6总结)
 ## 一、Vue 基础
 
 ### 1\. Vue的基本原理
@@ -15,10 +73,13 @@ Vue.js 是采用**数据劫持**结合**发布者-订阅者模式**的方式，�
 > 递归遍历observe添加setter/getter=>compile解析模板添加数据更新订阅者=>watcher订阅者-通信桥梁=>MVVM数据绑定入口
 
 ![image.png](https://upload-images.jianshu.io/upload_images/2323089-85db22ca0a816879.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-1.  需要observe的数据对象进行**递归遍历**，包括子属性对象的属性，都加上setter和getter这样的话，给这个对象的某个值赋值，就会触发setter，那么就能监听到了数据变化
-2.  compile解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图
-3.  Watcher订阅者是Observer和Compile之间通信的桥梁，主要做的事情是: ①在自身实例化时往属性订阅器(dep)里面添加自己 ②自身必须有一个update()方法 ③待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调，则功成身退。
-4.  MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者，通过Observer来监听自己的model数据变化，通过Compile来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 -> 视图更新；视图交互变化(input) -> 数据model变更的双向绑定效果。
+1.  需要**observe（观察的）**的数据对象进行**递归遍历**，包括子属性对象的属性，都加上setter和getter这样的话，给这个对象的某个值赋值，就会触发setter，那么就能监听到了数据变化
+2.  **compile解析模板指令**，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图
+3.  **Watcher订阅者** 是`Observer和Compile`之间通信的桥梁，主要做的事情是: 
+   ①在自身实例化时`往属性订阅器(dep)里面添加自己` 
+   ②自身必须有一个`update()方法` 
+   ③待属性变动dep.notice()通知时，能`调用自身的update()方法，并触发Compile中绑定的回调`，则功成身退。
+4.  **MVVM作为数据绑定的入口**，整合`Observer、Compile和Watcher三者`，通过`Observer来监听`自己的model数据变化，通过`Compile来解析编译模板指令`，最终利用`Watcher搭起Observer和Compile之间的通信桥梁`，达到**数据变化 -> 视图更新；视图交互变化(input) -> 数据model变更**的双向绑定效果。
 
 ### 3\. 使用 Object.defineProperty() 来进行数据劫持有什么缺点？
 
@@ -56,21 +117,21 @@ MVP 模式与 MVC 唯一不同的在于 Presenter 和 Controller。在 MVC 模�
 
 ### 5\. Computed 和 Watch 的区别
 
-**对于Computed：**
+**对于computed：**
 
-*   它支持缓存，只有依赖的数据发生了变化，才会重新计算
-*   不支持异步，当Computed中有异步操作时，无法监听数据的变化
-*   computed的值会默认走缓存，计算属性是基于它们的响应式依赖进行缓存的，也就是基于data声明过，或者父组件传递过来的props中的数据进行计算的。
+*   它`支持缓存`，只有`依赖的数据`发生了变化，才会重新计算
+*   `不支持异步`，当Computed中有异步操作时，无法监听数据的变化
+*   computed的值会默认走缓存，计算属性是**基于它们的`响应式依赖`进行缓存的**，也就是`基于data`声明过，或者父组件传递过来的`props`中的数据进行计算的。
 *   如果一个属性是由其他属性计算而来的，这个属性依赖其他的属性，一般会使用computed
 *   如果computed属性的属性值是函数，那么默认使用get方法，函数的返回值就是属性的属性值；在computed中，属性有一个get方法和一个set方法，当数据发生变化时，会调用set方法。
 
-**对于Watch：**
+**对于watch：**
 
-*   它不支持缓存，数据变化时，它就会触发相应的操作
-*   支持异步监听
-*   监听的函数接收两个参数，第一个参数是最新的值，第二个是变化之前的值
+*   它`不支持缓存`，数据变化时，它就会触发相应的操作
+*   `支持异步监听`
+*   监听的函数接收两个参数，第一个参数是`最新的值`，第二个是`变化之前的值`
 *   当一个属性发生变化时，就需要执行相应的操作
-*   监听数据必须是data中声明的或者父组件传递过来的props中的数据，当发生变化时，会触发其他操作，函数有两个的参数：
+*   监听数据必须是`data中声明的或者父组件传递过来的props`中的数据，当发生变化时，会触发其他操作，函数有两个的参数：
     *   immediate：组件加载立即触发回调函数
     *   deep：深度监听，发现数据内部的变化，在复杂数据类型中使用，例如数组中的对象发生变化。需要注意的是，deep无法监听到数组和对象内部的变化。
 
@@ -100,7 +161,7 @@ MVP 模式与 MVC 唯一不同的在于 Presenter 和 Controller。在 MVC 模�
 slot又名插槽，是Vue的内容分发机制，组件内部的模板引擎使用slot元素作为承载分发内容的出口。插槽slot是子组件的一个模板标签元素，而这一个标签元素是否显示，以及怎么显示是由父组件决定的。slot又分三类，默认插槽，具名插槽和作用域插槽。
 
 *   默认插槽：又名匿名查抄，当slot没有指定name属性值的时候一个默认显示插槽，一个组件内只有有一个匿名插槽。
-*   具名插槽：带有具体名字的插槽，也就是带有name属性的slot，一个组件可以出现多个具名插槽。
+*   具名插槽：带有具体名字的插槽，也就是`带有name属性的slot`，一个组件可以出现多个具名插槽。
 *   作用域插槽：默认插槽、具名插槽的一个变体，可以是匿名插槽，也可以是具名插槽，该插槽的不同点是在子组件渲染作用域插槽时，可以将子组件内部的数据传递给父组件，让父组件根据子组件的传递过来的数据决定如何渲染该插槽。
 
 实现原理：当子组件vm实例化时，获取到父组件传入的slot标签的内容，存放在`vm.$slot`中，默认插槽为`vm.$slot.default`，具名插槽为`vm.$slot.xxx`，xxx 为插槽名，当组件执行渲染函数时候，遇到slot标签，使用`$slot`中的内容进行替换，此时可以为插槽传递数据，若存在数据，则可称该插槽为作用域插槽。
@@ -194,7 +255,6 @@ slot又名插槽，是Vue的内容分发机制，组件内部的模板引擎使�
 <keep-alive>
 	<router-view v-if="$route.meta.keepAlive"></router-view>
 </kepp-alive>
-复制代码
 ```
 
 **router.js**
@@ -208,7 +268,6 @@ slot又名插槽，是Vue的内容分发机制，组件内部的模板引擎使�
     keepAlive: true // 需要被缓存
   }
 },
-复制代码
 ```
 
 ### 10\. 常见的事件修饰符及其作用
@@ -221,9 +280,9 @@ slot又名插槽，是Vue的内容分发机制，组件内部的模板引擎使�
 
 ### 11\. v-if、v-show、v-html 的原理
 
-*   v-if会调用addIfCondition方法，生成vnode的时候会忽略对应节点，render的时候就不会渲染；
-*   v-show会生成vnode，render的时候也会渲染成真实节点，只是在render过程中会在节点的属性中修改show属性值，也就是常说的display；
-*   v-html会先移除节点下的所有节点，调用html方法，通过addProp添加innerHTML属性，归根结底还是设置innerHTML为v-html的值。
+*   v-if会调用`addIfCondition`方法，生成vnode的时候会忽略对应节点，render的时候就不会渲染；
+*   v-show会生成vnode，render的时候也会渲染成真实节点，只是在render过程中会在节点的属性中修改show属性值，也就是常说的`display`；
+*   v-html会先移除节点下的所有节点，调用html方法，通过`addProp添加innerHTML属性`，归根结底还是设置innerHTML为v-html的值。
 
 ### 13\. v-if和v-show的区别
 
@@ -234,6 +293,9 @@ slot又名插槽，是Vue的内容分发机制，组件内部的模板引擎使�
 *   **使用场景**：v-if适合运营条件不大可能改变；v-show适合频繁切换。
 
 ### 14\. v-model 是如何实现的，语法糖实际是什么？
+>①input上【v-bind:value和v-on:input='$event.target.value'】
+②组件上【默认会利用`名为 value 的 prop`和`名为 input 的事件`】
+
 
 **（1）作用在表单元素上** 动态绑定了 input 的 value 指向了 messgae 变量，并且在触发 input 事件的时候去动态把 message设置为目标值：
 
@@ -244,13 +306,12 @@ slot又名插槽，是Vue的内容分发机制，组件内部的模板引擎使�
     v-bind:value="message" 
     v-on:input="message=$event.target.value"
 >
-//$event 指代当前触发的事件对象;
-//$event.target 指代当前触发的事件对象的dom;
-//$event.target.value 就是当前dom的value值;
-//在@input方法中，value => sth;
-//在:value中,sth => value;
-复制代码
 ```
+- $event 指代当前**触发的事件对象**;
+- $event.target 指代当前触发的**事件对象的dom**;
+- $event.target.value 就是当前**dom的value值**;
+- 在@input方法中，value => sth;
+- 在:value中,sth => value;
 
 **（2）作用在组件上** 在自定义组件中，v-model 默认会利用名为 value 的 prop和名为 input 的事件
 
@@ -258,7 +319,6 @@ slot又名插槽，是Vue的内容分发机制，组件内部的模板引擎使�
 
 ```
 <child :value="message"  @input="function(e){message = e}"></child>
-复制代码
 ```
 
 在组件的实现中，可以通过 v-model属性来配置子组件接收的prop名称，以及派发的事件名称。 例子：
@@ -270,7 +330,7 @@ slot又名插槽，是Vue的内容分发机制，组件内部的模板引擎使�
 <aa-input v-bind:value="aa" v-on:input="aa=$event.target.value"></aa-input>
 
 // 子组件：
-<input v-bind:value="aa" v-on:input="onmessage"></aa-input>
+<input v-bind:value="aa" v-on:input="onmessage">
 
 props:{value:aa,}
 methods:{
@@ -278,10 +338,9 @@ methods:{
         $emit('input',e.target.value)
     }
 }
-复制代码
 ```
 
-默认情况下，一个组件上的v-model 会把 value 用作 prop且把 input 用作 event。但是一些输入类型比如单选框和复选框按钮可能想使用 value prop 来达到不同的目的。使用 model 选项可以回避这些情况产生的冲突。js 监听input 输入框输入数据改变，用oninput，数据改变以后就会立刻出发这个事件。通过input事件把数据$emit 出去，在父组件接受。父组件设置v-model的值为input `$emit`过来的值。
+默认情况下，一个组件上的v-model 会把 value 用作 prop且把 input 用作 event。但是一些输入类型比如单选框和复选框按钮可能想使用 value prop 来达到不同的目的。使用 model 选项可以回避这些情况产生的冲突。js 监听input 输入框输入数据改变，用oninput，数据改变以后就会立刻出发这个事件。通过input事件把数据`$emit` 出去，在父组件接受。父组件设置v-model的值为input `$emit`过来的值。
 
 ### 15\. v-model 可以被用在自定义组件上吗？如果可以，如何使用？
 
@@ -289,7 +348,6 @@ methods:{
 
 ```
 <input v-model="searchText">
-复制代码
 ```
 
 实际上相当于：
@@ -299,14 +357,12 @@ methods:{
   v-bind:value="searchText"
   v-on:input="searchText = $event.target.value"
 >
-复制代码
 ```
 
 用在自定义组件上也是同理：
 
 ```
 <custom-input v-model="searchText">
-复制代码
 ```
 
 相当于：
@@ -316,7 +372,6 @@ methods:{
   v-bind:value="searchText"
   v-on:input="searchText = $event"
 ></custom-input>
-复制代码
 ```
 
 显然，custom-input 与父组件的交互如下：
@@ -336,7 +391,6 @@ Vue.component('custom-input', {
     >
   `
 })
-复制代码
 ```
 
 ### 16\. data为什么是一个函数而不是对象
@@ -355,9 +409,9 @@ JavaScript中的对象是引用类型的数据，当多个实例引用同一个�
 
 keep-alive有以下三个属性：
 
-*   include 字符串或正则表达式，只有名称匹配的组件会被匹配；
-*   exclude 字符串或正则表达式，任何名称匹配的组件都不会被缓存；
-*   max 数字，最多可以缓存多少组件实例。
+*   `include` 字符串或正则表达式，只有名称匹配的组件会被匹配；
+*   `exclude` 字符串或正则表达式，任何名称匹配的组件都不会被缓存；
+*   `max` 数字，最多可以缓存多少组件实例。
 
 注意：keep-alive 包裹动态组件时，会缓存不活动的组件实例。
 
